@@ -2,10 +2,14 @@
 const fs = require("fs");
 const https = require("https");
 const readline = require('readline');
+let outputPath = "./";
+if (process.argv.length > 2) {
+  outputPath = process.argv[2] + "/";
+}
 
 const MEETUP_URL = "https://api.meetup.com";
-const MEETUP_KEY = String(fs.readFileSync(".auth_key")).trim();
-const MEETUP_GROUP = String(fs.readFileSync(".meetup_group")).trim();
+const MEETUP_KEY = String(fs.readFileSync(`${outputPath}.auth_key`)).trim();
+const MEETUP_GROUP = String(fs.readFileSync(`${outputPath}.meetup_group`)).trim();
 
 
 const rl = readline.createInterface({
@@ -30,7 +34,7 @@ function checkDir(path) {
 }
 
 const EVENT_URL = `${MEETUP_URL}/${MEETUP_GROUP}/events?photo-host=secure&page=200&status=upcoming,past&key=${MEETUP_KEY}`;
-checkDir(`./events/`);
+checkDir(`${outputPath}events/`);
 https.get(EVENT_URL, (res) => {
   let rawData = '';
   res.on('data', (chunk) => rawData += chunk);
@@ -51,7 +55,7 @@ https.get(EVENT_URL, (res) => {
       const dayPath = checkDir(`${monthPath}/${padLeft(day, 2)}`);
       const eventPath = checkDir(`${dayPath}/${event.id}`);
 */
-      const eventPath = checkDir(`./events/${event.id}`);
+      const eventPath = checkDir(`${outputPath}events/${event.id}`);
       // Write unique JSON file with pretty printing to reduce git diff noise
       fs.writeFileSync(`${eventPath}/details.json`, JSON.stringify(event, undefined, 2));
 /*

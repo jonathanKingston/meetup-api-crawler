@@ -1,7 +1,12 @@
 "use strict";
 const fs = require("fs");
 
-const eventsPath = "./events/";
+let outputPath = "./";
+if (process.argv.length > 2) {
+  outputPath = process.argv[2] + "/";
+}
+
+const eventsPath = `${outputPath}/events/`;
 const eventFiles = fs.readdirSync(eventsPath);
 const events = {};
 const upcoming = [];
@@ -42,7 +47,7 @@ if (upcoming.length > 0) {
   nextEvent = upcoming[0];
 }
 
-fs.writeFileSync("events.json", JSON.stringify({
+fs.writeFileSync(`${outputPath}/events.json`, JSON.stringify({
   nextEvent,
   upcoming,
   events

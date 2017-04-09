@@ -1,0 +1,19 @@
+{
+  "name": "meetup-api-crawler",
+  "version": "1.0.0",
+  "description": "This updates the site by parsing data from Meetup, building dirs of all the events and asking for profile data.",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanKingston/meetup-api-crawler.git"
+  },
+  "author": "Jonathan Kingston",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonathanKingston/meetup-api-crawler/issues"
+  },
+  "homepage": "https://github.com/jonathanKingston/meetup-api-crawler#readme"
+}
