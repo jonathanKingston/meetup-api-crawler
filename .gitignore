@@ -1,0 +1,5 @@
+.auth_key
+.meetup_group
+events/*
+events.json
+*.swp
